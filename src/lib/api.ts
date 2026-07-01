@@ -59,11 +59,12 @@ export async function generateImage(
       params.referenceImages!.map((f) => fileToBase64DataUrl(f))
     )
 
+    const images = imageDataUrls.map((url) => ({ type: 'base64', image_url: url }))
     const body: Record<string, unknown> = {
       model: config.model,
       prompt: params.prompt,
       size: params.size,
-      image: imageDataUrls.length === 1 ? imageDataUrls[0] : imageDataUrls,
+      images: images,
     }
     if (params.quality !== 'auto') body.quality = params.quality
     if (params.background !== 'auto') body.background = params.background
@@ -137,13 +138,14 @@ export async function editImage(
     imageDataUrls.push(await fileToBase64DataUrl(file))
   }
 
+  const images = imageDataUrls.map((url) => ({ type: 'base64', image_url: url }))
+
   const body: Record<string, unknown> = {
     model: config.model,
     prompt: params.prompt,
     size: params.size,
   }
-  if (imageDataUrls.length === 1) body.image = imageDataUrls[0]
-  else if (imageDataUrls.length > 1) body.image = imageDataUrls
+  if (images.length > 0) body.images = images
   if (params.quality !== 'auto') body.quality = params.quality
   if (params.outputFormat !== 'png') body.output_format = params.outputFormat
 
