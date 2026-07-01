@@ -1,6 +1,6 @@
 import type { ApiConfig, GenerateParams, EditParams } from '@/types'
 
-const USE_PROXY = true
+const USE_PROXY = import.meta.env.DEV
 
 function buildHeaders(config: ApiConfig, targetUrl: string) {
   const headers: Record<string, string> = {
