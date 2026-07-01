@@ -61,6 +61,7 @@ function corsProxyPlugin(): Plugin {
 }
 
 export default defineConfig({
+  base: '/Image2Client/',
   plugins: [react(), tailwindcss(), corsProxyPlugin()],
   resolve: {
     alias: {
