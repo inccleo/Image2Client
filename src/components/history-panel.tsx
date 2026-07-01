@@ -35,7 +35,7 @@ export function HistoryPanel() {
   }
 
   return (
-    <div className="space-y-2 max-h-[300px] overflow-y-auto pr-1">
+    <div className="space-y-2 pr-1">
       {history.map((record) => (
         <div
           key={record.id}

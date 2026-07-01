@@ -6,9 +6,9 @@ const db = new Dexie('Image2Client') as Dexie & {
   templates: EntityTable<PromptTemplate, 'id'>
 }
 
-db.version(1).stores({
+db.version(2).stores({
   history: '++id, type, createdAt',
-  templates: '++id, category, name',
+  templates: '++id, category, name, createdAt',
 })
 
 export { db }

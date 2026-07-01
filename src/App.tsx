@@ -68,8 +68,8 @@ export default function App() {
       </header>
 
       <main className="flex-1 flex overflow-hidden">
-        {/* Left Panel */}
-        <div className="w-[420px] border-r flex flex-col overflow-hidden shrink-0">
+        {/* Left Panel - Controls */}
+        <div className="w-[360px] border-r flex flex-col overflow-hidden shrink-0">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="flex flex-col flex-1 overflow-hidden">
             <TabsList className="mx-3 mt-3 grid grid-cols-2">
               <TabsTrigger value="generate">生成</TabsTrigger>
@@ -85,28 +85,29 @@ export default function App() {
               </TabsContent>
             </div>
           </Tabs>
-
-          <div className="border-t">
-            <Tabs defaultValue="history" className="flex flex-col">
-              <TabsList className="mx-3 mt-2 grid grid-cols-2">
-                <TabsTrigger value="history">历史</TabsTrigger>
-                <TabsTrigger value="templates">模板</TabsTrigger>
-              </TabsList>
-              <div className="p-3 max-h-[350px] overflow-y-auto">
-                <TabsContent value="history" className="mt-0">
-                  <HistoryPanel />
-                </TabsContent>
-                <TabsContent value="templates" className="mt-0">
-                  <TemplatesPanel onApply={handleTemplateApply} />
-                </TabsContent>
-              </div>
-            </Tabs>
-          </div>
         </div>
 
-        {/* Right Panel - Preview */}
+        {/* Center Panel - Preview */}
         <div className="flex-1 overflow-hidden">
           <PreviewPanel />
+        </div>
+
+        {/* Right Panel - History & Templates */}
+        <div className="w-[300px] border-l flex flex-col overflow-hidden shrink-0">
+          <Tabs defaultValue="history" className="flex flex-col flex-1 overflow-hidden">
+            <TabsList className="mx-3 mt-3 grid grid-cols-2">
+              <TabsTrigger value="history">历史</TabsTrigger>
+              <TabsTrigger value="templates">模板</TabsTrigger>
+            </TabsList>
+            <div className="flex-1 overflow-y-auto p-3">
+              <TabsContent value="history" className="mt-0">
+                <HistoryPanel />
+              </TabsContent>
+              <TabsContent value="templates" className="mt-0">
+                <TemplatesPanel onApply={handleTemplateApply} />
+              </TabsContent>
+            </div>
+          </Tabs>
         </div>
       </main>
     </div>
