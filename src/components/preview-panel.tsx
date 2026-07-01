@@ -71,15 +71,15 @@ export function PreviewPanel() {
           下载全部
         </Button>
       </div>
-      <div className="flex-1 overflow-auto p-4">
-        <div className={`grid gap-4 ${resultImages.length === 1 ? 'grid-cols-1' : 'grid-cols-2'}`}>
+      <div className="flex-1 overflow-auto p-4 flex items-center justify-center">
+        <div className={`grid gap-4 place-items-center w-full ${resultImages.length === 1 ? 'grid-cols-1' : 'grid-cols-2'}`}>
           {resultImages.map((src, i) => (
-            <div key={i} className="relative group">
+            <div key={i} className="relative group flex items-center justify-center">
               <img
                 src={src}
                 alt={`Result ${i + 1}`}
-                className="w-full rounded-lg border shadow-sm"
-                style={{ transform: `scale(${zoom / 100})`, transformOrigin: 'top left' }}
+                className="max-h-[calc(100vh-160px)] rounded-lg border shadow-sm object-contain"
+                style={{ maxWidth: `${zoom}%` }}
               />
               <Button
                 variant="secondary" size="sm"
